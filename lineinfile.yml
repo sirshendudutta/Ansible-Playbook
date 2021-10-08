@@ -1,0 +1,9 @@
+---
+- name: Demo of lineinfile module
+  hosts: node1
+  tasks:
+          - name: Insert a line in /etc/hosts file
+            lineinfile:
+                    path: /etc/hosts
+                    line: '192.168.4.100 demo.example.com demo'
+                    state: present

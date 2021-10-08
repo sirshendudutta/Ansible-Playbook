@@ -3,14 +3,14 @@
   hosts: node1.example.com
   tasks:
 
-          - name: Tasks 1
-            user:
-                    name: john
-                    state: present
-                    groups: dba
-                    append: yes
-
-          - name: Tasks 2
+          - name: Create group
             group:
                     name: dba
                     state: present
+
+          - name: create & assign user into dba group
+            user:
+                    name: bob
+                    state: present
+                    groups: dba
+                    append: yes

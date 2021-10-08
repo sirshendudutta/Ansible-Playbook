@@ -1,0 +1,19 @@
+---
+- name: Deploying Apache webserver
+  hosts: node1.example.com
+  tasks:
+          - name: Install httpd package
+            yum:
+                    name: httpd
+                    state: present
+
+          - name: Push index.html page to Managed Host(s)
+            copy:
+                    src: files/index.html
+                    dest: /var/www/html
+
+          - name: Start and Enabled httpd service
+            service:
+                    name: httpd
+                    start: started
+                    enabled: true

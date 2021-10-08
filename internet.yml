@@ -1,0 +1,49 @@
+---
+- name: Manage web & db services
+  hosts: node1
+  tasks:
+          - name: Latest version of all required packages installed
+            yum:
+                    name:
+                            - firewalld
+                            - httpd
+                            - mariadb-server
+                            - php
+                            - php-mysqlnd
+                            - policycoreutils-python-utils
+                    state: latest
+              
+          - name: firewalld is enabled and running
+            service:
+                    name: firewalld
+                    state: started
+                    enabled: true
+
+          - name: mariadb is enabled and running
+            service:
+                    name: mariadb
+                    state: started
+                    enabled: true
+
+          - name: httpd is enabled and running
+            service:
+                    name: httpd
+                    state: started
+                    enabled: true
+
+          - name: firewalld permites http service
+            firewalld:
+                    service: http
+                    immediate: yes
+                    permanent: yes
+                    state: enabled
+
+          - name: index.php page is installed
+            get_url:
+                    url: http://10.148.0.2/index.php
+                    dest: /var/www/html/index.php
+                    owner: root
+                    group: root
+                    mode: 0644  
+
+
