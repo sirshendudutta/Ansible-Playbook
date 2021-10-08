@@ -1,0 +1,16 @@
+---
+- name: Play 1
+  hosts: node1.example.com
+  tasks:
+
+          - name: Tasks 1
+            user:
+                    name: john
+                    state: present
+                    groups: dba
+                    append: yes
+
+          - name: Tasks 2
+            group:
+                    name: dba
+                    state: present

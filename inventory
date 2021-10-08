@@ -1,0 +1,13 @@
+
+[web]
+node1
+node1.example.com
+
+[db]
+node2
+node2.example.com
+
+[servers:children]
+web
+db
+
